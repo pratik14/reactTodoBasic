@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class TodoList extends Component {
   render() {
     let { list } = this.props
-    list = list.map((todo) =>  <li key={todo.name}>{todo.name}</li> )
+    list = list.map((todo) =>  <TodoItem key={todo.id} todo={todo} /> )
     
     return (
       <ul>
@@ -11,6 +11,17 @@ class TodoList extends Component {
       </ul>
     );
   }
+}
+
+
+function TodoItem(props){
+  const { todo } = props;
+  return(
+    <li>
+      <p><input type="checkbox" value={todo.completed}  /></p>
+      <p>{todo.name}</p>
+    </li> 
+  )
 }
 
 export default TodoList;

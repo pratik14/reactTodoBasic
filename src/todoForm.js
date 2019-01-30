@@ -14,9 +14,11 @@ const TodoForm = (props) => (
         return errors
       }}
       onSubmit={(values, actions) => {
+        //random value
+        values.id = Math.random().toString(36).substr(2, 9);
         props.addTodo(values)
         actions.setSubmitting(false);
-        actions.setValues({ name: '', completed: false })
+        actions.resetForm()
       }}
       render={props => (
         <form onSubmit={props.handleSubmit}>
@@ -27,17 +29,8 @@ const TodoForm = (props) => (
             value={props.values.name}
             name="name"
           />
-          {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-
-          <input
-            type="checkbox"
-            onChange={props.handleChange}
-            onBlur={props.handleBlur}
-            // value={props.values.completed}
-            checked={props.values.completed}
-            name="completed"
-          />
           <button type="submit">Submit</button>
+          {props.errors.name && <div id="feedback">{props.errors.name}</div>}
         </form>
       )}
     />
