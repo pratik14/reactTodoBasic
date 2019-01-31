@@ -25,7 +25,7 @@ class TodoItem extends Component {
     
     return(
       <li>
-        <input type="checkbox"  onClick={this.markCompleted} />
+        <input type="checkbox"  checked={todo.completed} onClick={this.markCompleted} />
         <label>{todo.name}</label>
         <button onClick={this.removeItem}>Remove</button>
       </li> 
