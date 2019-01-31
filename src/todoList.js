@@ -3,14 +3,19 @@ import TodoItem from './todoItem'
 
 class TodoList extends Component {
   renderList(flag, header){
-    const { list, updateTodo } = this.props
+    const { list, updateTodo, removeTodo } = this.props
     const todos = list.filter((t) => t.completed === flag)
 
     if(todos.length === 0){ return null }
     
     const newList = todos.map((todo) =>  { 
       return(
-        <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} /> 
+        <TodoItem 
+          key={todo.id} 
+          todo={todo} 
+          updateTodo={updateTodo} 
+          removeTodo={removeTodo}
+        /> 
       )
     })
 

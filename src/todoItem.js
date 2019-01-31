@@ -4,6 +4,7 @@ class TodoItem extends Component {
   constructor(props){
     super(props)
 
+    this.removeItem = this.removeItem.bind(this)
     this.markCompleted = this.markCompleted.bind(this)
   }
 
@@ -14,14 +15,19 @@ class TodoItem extends Component {
     updateTodo(todo)
   }
 
+  removeItem(){
+    let { todo, removeTodo } = this.props
+    removeTodo(todo.id)
+  }
+
   render() {
     let { todo } = this.props
-    console.log(todo);
     
     return(
       <li>
         <input type="checkbox"  onClick={this.markCompleted} />
         <label>{todo.name}</label>
+        <button onClick={this.removeItem}>Remove</button>
       </li> 
     )
   }

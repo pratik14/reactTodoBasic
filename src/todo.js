@@ -12,6 +12,7 @@ class Todo extends Component {
 
     this.addTodo = this.addTodo.bind(this)
     this.updateTodo = this.updateTodo.bind(this)
+    this.removeTodo = this.removeTodo.bind(this)
   }
 
   addTodo(todo){
@@ -28,13 +29,23 @@ class Todo extends Component {
     this.setState({ list: newList })
   }
 
+  removeTodo(todoId){
+    const { list } = this.state;
+    const newList =  list.filter(t => t.id !== todoId)
+    this.setState({ list: newList })
+  }
+
   render() {
     const { list } = this.state;
 
     return (
       <div>
         <TodoForm addTodo={this.addTodo} />
-        <TodoList list={list} updateTodo={this.updateTodo} />
+        <TodoList 
+          list={list} 
+          removeTodo={this.removeTodo}
+          updateTodo={this.updateTodo} 
+        />
       </div>
     );
   }
