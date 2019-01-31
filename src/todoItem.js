@@ -10,12 +10,12 @@ class TodoItem extends Component {
 
   markCompleted(){
     let { todo, updateTodo } = this.props
-    todo.completed = true
+    todo.completed = !todo.completed
     updateTodo(todo)
   }
 
   render() {
-    let { todo, updateTodo } = this.props
+    let { todo } = this.props
     console.log(todo);
     
     return(

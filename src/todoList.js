@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import TodoItem from './todoItem'
 
 class TodoList extends Component {
-
-  completedList(){
+  renderList(flag, header){
     const { list, updateTodo } = this.props
-    const completedTodos = list.filter((t) => t.completed)
+    const todos = list.filter((t) => t.completed === flag)
 
-    if(completedTodos.length == 0){ return null }
+    if(todos.length === 0){ return null }
     
-    const completedList = completedTodos.map((todo) =>  { 
+    const newList = todos.map((todo) =>  { 
       return(
         <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} /> 
       )
@@ -17,39 +16,17 @@ class TodoList extends Component {
 
     return(
       <div>
-        <h3>Completed</h3>
-        <ul>{ completedList }</ul>
+        <h3>{header}</h3>
+        <ul id={header + '-tasks'}>{ newList }</ul>
       </div>
     )
   }
-
-  pendingList(){
-    const { list, updateTodo } = this.props
-    const pendingTodos = list.filter((t) => !t.completed)
-
-    if(pendingTodos.length == 0){ return null }
-    
-    const pendingList = pendingTodos.map((todo) =>  { 
-      return(
-        <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} /> 
-      )
-    })
-
-    return(
-      <div>
-        <h3>Pending</h3>
-        <ul>{ pendingList }</ul>
-      </div>
-    )
-  }
-
-
 
   render() {
     return (
       <div>
-        { this.pendingList() }
-        { this.completedList() }
+        { this.renderList(false, 'pending') }
+        { this.renderList(true, 'completed') }
       </div>
     );
   }
