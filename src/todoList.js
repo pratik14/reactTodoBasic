@@ -1,27 +1,44 @@
 import React, { Component } from 'react';
+import TodoItem from './todoItem'
 
 class TodoList extends Component {
   render() {
-    let { list } = this.props
-    list = list.map((todo) =>  <TodoItem key={todo.id} todo={todo} /> )
+    let { list, updateTodo } = this.props
+
+    if(list.length == 0){
+      return null;
+    }
+
+
+    const pendingTodos = list.filter((t) => !t.completed)
+    const completedTodos = list.filter((t) => t.completed)
+
+    const pendingList = pendingTodos.map((todo) =>  { 
+      return(
+        <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} /> 
+      )
+    })
     
+    const completedList = completedTodos.map((todo) =>  { 
+      return(
+        <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} /> 
+      )
+    })
+
+
     return (
-      <ul>
-       { list }
-      </ul>
+      <div>
+        <h3>Pending</h3>
+        <ul>
+          { pendingList }
+        </ul>
+        <h3>Completed</h3>
+        <ul id='completed-tasks'>
+          { completedList }
+        </ul>
+      </div>
     );
   }
-}
-
-
-function TodoItem(props){
-  const { todo } = props;
-  return(
-    <li>
-      <p><input type="checkbox" value={todo.completed}  /></p>
-      <p>{todo.name}</p>
-    </li> 
-  )
 }
 
 export default TodoList;

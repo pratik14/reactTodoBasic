@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 
 const TodoForm = (props) => (
   <div>
-    <h1>My Form</h1>
+    <h1>Todo List</h1>
     <Formik
       initialValues={{ name: '', completed: false }}
       validate={(values) => {
@@ -30,7 +30,7 @@ const TodoForm = (props) => (
             name="name"
           />
           <button type="submit">Submit</button>
-          {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+          {props.errors.name && <p className="error">{props.errors.name}</p>}
         </form>
       )}
     />

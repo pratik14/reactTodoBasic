@@ -11,6 +11,7 @@ class Todo extends Component {
     }
 
     this.addTodo = this.addTodo.bind(this)
+    this.updateTodo = this.updateTodo.bind(this)
   }
 
   addTodo(todo){
@@ -21,13 +22,19 @@ class Todo extends Component {
     })
   }
 
+  updateTodo(todo){
+    const { list } = this.state;
+    const newList =  list.map(t => (t.id === todo.id ? todo : t))
+    this.setState({ list: newList })
+  }
+
   render() {
     const { list } = this.state;
 
     return (
       <div>
         <TodoForm addTodo={this.addTodo} />
-        <TodoList list={list} />
+        <TodoList list={list} updateTodo={this.updateTodo} />
       </div>
     );
   }
