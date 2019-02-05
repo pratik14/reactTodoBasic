@@ -12,7 +12,7 @@ it('renders correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it.only('should call onSubmitAction on submit', async () => {
+it('should call onSubmitAction on submit', () => {
   const onSubmitSpy = jest.fn();
 
   const wrapper = mount(<TodoForm onSubmitAction={onSubmitSpy} />);
