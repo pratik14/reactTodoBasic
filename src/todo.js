@@ -26,6 +26,7 @@ class Todo extends Component {
   updateTodo(todo){
     const { list } = this.state;
     const newList =  list.map(t => (t.id === todo.id ? todo : t))
+    console.log(newList[0])
     this.setState({ list: newList })
   }
 
@@ -40,7 +41,8 @@ class Todo extends Component {
 
     return (
       <div>
-        <TodoForm addTodo={this.addTodo} />
+        <h1>Todo List</h1>
+        <TodoForm onSubmitAction={this.addTodo} />
         <TodoList 
           list={list} 
           removeTodo={this.removeTodo}
