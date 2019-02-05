@@ -32,7 +32,7 @@ const TodoForm = (props) => {
               value={props.values.name}
               name="name"
             />
-            <button type="submit">Submit</button>
+            <button id='submitButton' type="submit">Submit</button>
             {props.errors.name && <p className="error">{props.errors.name}</p>}
           </form>
         )}
