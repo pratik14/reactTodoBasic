@@ -19,7 +19,8 @@ const TodoForm = (props) => {
           return errors
         }}
         onSubmit={(values, actions) => {
-          props.onSubmitAction(values)
+          // props.onSubmitAction(values)
+          props.dispatch({ type: 'ADD_TODO', todo: values})
           actions.setSubmitting(false);
           actions.resetForm()
         }}

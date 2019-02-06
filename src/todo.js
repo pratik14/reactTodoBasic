@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import TodoList from './todoList'
-import TodoForm from './todoForm'
+// import TodoList from './todoList'
+// import TodoForm from './todoForm'
+import TodoFormContainer from './todoFormContainer'
+import TodoListContainer from './listContainer'
 
 class Todo extends Component {
   constructor(props){
@@ -42,12 +44,8 @@ class Todo extends Component {
     return (
       <div>
         <h1>Todo List</h1>
-        <TodoForm onSubmitAction={this.addTodo} />
-        <TodoList 
-          list={list} 
-          removeTodo={this.removeTodo}
-          updateTodo={this.updateTodo} 
-        />
+        <TodoFormContainer />
+        <TodoListContainer />
       </div>
     );
   }
